@@ -7,6 +7,7 @@ from math import sqrt
 
 # Initialise variables
 factors = []
+nonprimefactors = []
 
 # Set target
 target = 13195
@@ -14,32 +15,54 @@ target = 13195
 
 # Function that finds all the factors (not necessarily prime factors) of a given number
 def findfactors(n):
-    # for i in range(1,int(sqrt(n)+1)):
-    for i in range(1,n+1):
+    for i in range(2,n):
         if n/i == int(n/i):
             factors.append(i)
 
 # Function that checks if a number is prime
 def checkprime(n):
     # Trial division
-    for i in range(2,int(sqrt(n)+1)):
-        if n/i == int(n/i):
-            # Number gives a remainder upon division and therefore is not prime
+    for i in range(2,int(sqrt(n)+2)):
+        if n % i == 0:
+            # n mod i is equal to zero and therefore n is not prime
             isprime = False
+            # Exit loop to prevent isprime from subsequently being set to true
             break
-        else:
+        elif n % i != 0:
+            # n might be prime, so set isprime equal to true
             isprime = True
-    if isprime == True:
-        return True
-    elif isprime == False:
-        return False
+    return isprime
+
+# Function that removes the contents of one list from another
+def filterlist(fulllist, toexclude):
+    excludedfactors = set(toexclude)
+    return (x for x in fulllist if x not in excludedfactors)
+
+print ("Beginning search ...")
 
 # Find and display all factors of target
 findfactors(target)
-print (factors)
+print ("Initial list of factors: " + repr(sorted(factors)))
 
-# Check each factor to see if it is prime or compound
+# Search for non-prime factors
 for i in range(0,len(factors)):
-    print (factors[i])
-    # Why can't I call checkprime here, like this? It works in the console.
-    checkprime(factors[i])
+    # Output log data
+    print ("Checking " + repr(factors[i]))
+    if checkprime(factors[i]) == False:
+        # Factor is not prime
+        # Add non-prime factor to list of non-prime factors
+        nonprimefactors.append(factors[i])
+        # Add factors of non-prime factor to list of factors
+        findfactors(factors[i])
+            
+# Remove duplicates from both lists
+factors = list(set(factors))
+nonprimefactors = list(set(nonprimefactors))
+# Output log data
+print ("All factors: " + repr(sorted(factors)))
+print ("Non-prime factors: " + repr(sorted(factors)))
+
+# Remove non-prime factors from list of factors
+primefactors = list(filterlist(factors, nonprimefactors))
+# Return the largest prime factor
+print ("The largest prime factor of " + repr(target) + " is " + repr(max(primefactors)) + ".")
