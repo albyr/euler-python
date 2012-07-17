@@ -12,14 +12,14 @@ factors = []
 nonprimefactors = []
 
 # Set target
-target = 13195
-# target = 600851475143
+# target = 13195
+target = 600851475143
 
 # Function that finds all the factors (not necessarily prime factors) of a given number
 def findfactors(n):
     # Output log data
     print ("Factoring " + repr(n))
-    for i in range(2,n):
+    for i in range(2,int(sqrt(n)+1)):
         if n/i == int(n/i):
             factors.append(i)
 
