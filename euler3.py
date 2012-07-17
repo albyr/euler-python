@@ -12,17 +12,14 @@ factors = []
 nonprimefactors = []
 
 # Set target
-# target = 13195
-target = 600851475143
+target = 13195
+# target = 600851475143
 
 # Function that finds all the factors (not necessarily prime factors) of a given number
 def findfactors(n):
     # Output log data
     print ("Factoring " + repr(n))
     for i in range(2,n):
-        # Output log data
-        if i % 1000 == 0:
-            print ("Factoring " + repr(n) + ". Checking " + repr(i))
         if n/i == int(n/i):
             factors.append(i)
 
@@ -33,7 +30,7 @@ def checkprime(n):
         if n % i == 0:
             # n mod i is equal to zero and therefore n is not prime
             isprime = False
-            # Exit loop to prevent isprime from subsequently being set to true
+            # Exit loop to prevent isprime from subsequently being set true
             break
         elif n % i != 0:
             # n might be prime, so set isprime equal to true
@@ -80,4 +77,3 @@ print ("The largest prime factor of " + repr(target) + " is " + repr(max(primefa
 endtime = datetime.datetime.now()
 print ("Started at " + str(starttime))
 print ("Ended at " + str(endtime))
-
