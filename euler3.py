@@ -4,18 +4,25 @@
 
 # Import the square root function
 from math import sqrt
+# Import date and time function for logging
+import datetime
 
 # Initialise variables
 factors = []
 nonprimefactors = []
 
 # Set target
-target = 13195
-# target = 600851475143
+# target = 13195
+target = 600851475143
 
 # Function that finds all the factors (not necessarily prime factors) of a given number
 def findfactors(n):
+    # Output log data
+    print ("Factoring " + repr(n))
     for i in range(2,n):
+        # Output log data
+        if i % 1000 == 0:
+            print ("Factoring " + repr(n) + ". Checking " + repr(i))
         if n/i == int(n/i):
             factors.append(i)
 
@@ -39,6 +46,8 @@ def filterlist(fulllist, toexclude):
     return (x for x in fulllist if x not in excludedfactors)
 
 print ("Beginning search ...")
+starttime = datetime.datetime.now()
+print (str(starttime))
 
 # Find and display all factors of target
 findfactors(target)
@@ -66,3 +75,9 @@ print ("Non-prime factors: " + repr(sorted(factors)))
 primefactors = list(filterlist(factors, nonprimefactors))
 # Return the largest prime factor
 print ("The largest prime factor of " + repr(target) + " is " + repr(max(primefactors)) + ".")
+
+# How long did this take?
+endtime = datetime.datetime.now()
+print ("Started at " + str(starttime))
+print ("Ended at " + str(endtime))
+
