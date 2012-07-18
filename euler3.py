@@ -13,6 +13,7 @@ nonprimefactors = []
 
 # Set target
 # target = 13195
+# target = 31667149
 target = 600851475143
 
 # Function that finds all the factors (not necessarily prime factors) of a given number
@@ -22,6 +23,7 @@ def findfactors(n):
     for i in range(2,int(sqrt(n)+1)):
         if n/i == int(n/i):
             factors.append(i)
+            factors.append(int(n/i))
 
 # Function that checks if a number is prime
 def checkprime(n):
