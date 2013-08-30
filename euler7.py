@@ -20,10 +20,10 @@ def checkprime(n):
         elif n % i == 0:
             # n mod i is equal to zero and therefore n is not prime
             isPrime = False
-            # Exit loop to prevent isprime from subsequently being set true
+            # Exit loop to prevent isPrime from subsequently being set true
             break
         elif n % i != 0:
-            # n might be prime, so set isprime equal to true
+            # n might be prime, so set isPrime equal to true
             isPrime = True
     return isPrime
 
