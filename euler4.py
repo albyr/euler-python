@@ -22,7 +22,7 @@ starttime = datetime.datetime.now()
 # Generate all possible products of two 3-digit numbers
 for x in range(100,1000):
     # Only need to check from x to 1000 because otherwise we repeat calculations
-    for y in range(100,1000):
+    for y in range(x,1000):
         z = x * y
         # Is z a palindrome?
         check = isPalindrome(z)
